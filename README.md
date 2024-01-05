@@ -1,6 +1,6 @@
 # live-video-react-app-dev
 ---
-
+![Demo](./readme-assets/demo.gif)
 This demo app demonstrates how to use the Agora ReactJS SDK to create a simple live video web-app.
 
 
