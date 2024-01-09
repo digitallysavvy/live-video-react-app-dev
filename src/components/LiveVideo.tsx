@@ -32,11 +32,6 @@ export const LiveVideo = () => {
   // get local video and mic tracks
   const { localMicrophoneTrack } = useLocalMicrophoneTrack(micOn);
   const { localCameraTrack } = useLocalCameraTrack(cameraOn);
-  usePublish([localMicrophoneTrack, localCameraTrack]);
-
-  //remote users
-  const remoteUsers = useRemoteUsers();
-  const { audioTracks } = useRemoteAudioTracks(remoteUsers);
 
   // to leave the call
   const navigate = useNavigate()
@@ -51,8 +46,16 @@ export const LiveVideo = () => {
     activeConnection,
   );
 
+  // publish the local mic and camera tracks into the channel
+  usePublish([localMicrophoneTrack, localCameraTrack]);
+
+  //remote users
+  const remoteUsers = useRemoteUsers();
+  const { audioTracks } = useRemoteAudioTracks(remoteUsers);
+
   // play the remote user audio tracks
-  audioTracks.map((track) => track.play());
+  audioTracks.forEach((track) => track.play());
+
 
   return (
     <>
