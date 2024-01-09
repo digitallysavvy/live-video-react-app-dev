@@ -12,7 +12,7 @@ import "sanitize.css"
 
 function App() {
   const navigate = useNavigate()
-  const agoraEngine = useRTCClient( AgoraRTC.createClient({ codec: "vp8", mode: "rtc" })); // Initialize Agora Client
+  const agoraClient = useRTCClient( AgoraRTC.createClient({ codec: "vp8", mode: "rtc" })); // Initialize Agora Client
 
   const handleConnect = (channelName: string) => {
     navigate(`/via/${channelName}`) // on form submit, navigate to new route
@@ -22,7 +22,7 @@ function App() {
     <Routes>
       <Route path='/' element={ <ConnectForm connectToVideo={ handleConnect } /> } />
       <Route path='/via/:channelName' element={
-        <AgoraRTCProvider client={agoraEngine}>
+        <AgoraRTCProvider client={agoraClient}>
           <LiveVideo />
         </AgoraRTCProvider>
       } />
